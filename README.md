@@ -1,13 +1,18 @@
-A Fullstack application that keeps track of the company's provisions provided to an employee.
+## A Fullstack application that keeps track of the company's provisions provided to an employee.
 
-Technology Stack:
+# Technology Stack:
+```
 --> HTML
 --> CSS
 --> Javascript
 --> C#
 --> SQL 
 --> .NET Framework
+```
 
-Integrated Environments:
+
+# Integrated Environments:
+```
 --> Visual Studio
 --> SQL Server Management Studio
+```
