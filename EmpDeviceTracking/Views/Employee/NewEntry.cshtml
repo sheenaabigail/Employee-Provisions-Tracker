@@ -1,0 +1,159 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+    var EmployeeData = ViewBag.employees;
+    var Site = ViewBag.Site as List<mSite>;
+    var Dept = ViewBag.Dept as List<mDept>;
+}
+<style>
+    * {
+        color: black;
+    }
+
+    .form-design {
+        margin: 10px;
+        border: hsl(256, 38%, 59%);
+        border-radius: 8px;
+        padding: 30px;
+        background-color: hsla(257, 32%, 66%, 0.5);
+        color: white;
+        min-width: 500px;
+    }
+
+    input[type=text] {
+        width: 150px;
+        height: 30px;
+        color: black;
+        margin: 2px 2px;
+    }
+
+    option {
+        background-color: white;
+        color: grey;
+        width: 150px;
+    }
+
+     form label {
+        font-weight:600;
+    } 
+
+
+    button {
+        color: black;
+        padding: 6px;
+        margin: 10px;
+        /* margin-right:20px; */
+    }
+</style>
+<form class="gothic-font" method="post" asp-action="SubmitNewEntry" asp-controller="Employee">
+    <h2 class="ms-5 mb-3">New Entry</h2>
+    <div class="form-check">
+        <div class="form-design">
+            <label class="m-2">
+                Host Name :
+                <input class="form-control" type="text" id="hostname" name="hostname" required>
+            </label>
+            <label class="m-2">
+                Employee ID :
+                <input class="form-control" type="text" name="empid" id="empid" required>
+            </label>
+
+            <label class="m-2">
+                Employee Name :
+                <input class="form-control" type="text" name="empname" id="empname" required>
+            </label>
+
+            <label class="m-2">
+                Site :
+                <select class ="form-select p-1" name="sitename" id="sitename" required>
+                   
+                    @if (Site != null)
+                    {
+                        @for (var i = 0; i < Site.Count; i++)
+                        {
+                            <option value="@Site[i].SiteID">@Site[i].SiteName</option>
+                        }
+
+                    }
+                   @*  <option value="" disabled selected>---select option---</option>
+                    <option value="SEZ">SEZ</option>
+                    <option value="DTA">DTA</option>
+                    <option value="Warehouse">Warehouse</option>
+                    <option value="-">-</option> *@
+                </select>
+            </label>
+
+            <label class="m-2">
+                Department :
+                <select class="form-select p-1" name="deptname" id="deptname" required>
+                    @if (Dept != null)
+                    {
+                        @for (var i = 0; i < Dept.Count; i++)
+                        {
+                            <option value="@Dept[i].DeptID">@Dept[i].DeptName</option>
+                        }
+
+                    }
+                    @* <option value="" disabled selected>---select option---</option>
+                    <option value="IT">IT</option>
+                    <option value="Logistics">Logistics</option>
+                    <option>-</option>
+                    <option>-</option> *@
+                </select>
+            </label>
+        </div>
+        <div class="form-design">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th style="border-top:none; font-size: 20px;">User Provisions</th>
+                        <th style="border-top:none; font-size: 20px;">Provided (Yes/No)</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+                    <tr>
+                        <th>Laptop</th>
+                        <td><input class="form-check-input" type="checkbox" name="laptop" id="laptop"></td>
+                    </tr>
+                    <tr>
+                        <th>Charger</th>
+                        <td><input type="checkbox" class="form-check-input" name="charger" id="charger"></td>
+                    </tr>
+                    <tr>
+                        <th>Mouse</th>
+                        <td><input type="checkbox" class="form-check-input" name="mouse" id="mouse"></td>
+                    </tr>
+                    <tr>
+                        <th>Laptop Bag</th>
+                        <td><input type="checkbox" class="form-check-input" name="laptopbag" id="laptopbag"></td>
+                    </tr>
+                    <tr>
+                        <th>Mouse Pad</th>
+                        <td><input type="checkbox" class="form-check-input" name="mousepad" id="mousepad"> </td>
+                    </tr>                   
+                    <tr>
+                        <th>Remarks (optional)</th>
+                        <td scope="row" colspan="2" style="padding:10px;">
+                            <input class="form-control" name="optionalremark" type="text" style="width:90%; height:50px;">
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <!-- <p>Remarks (optional) :
+                <input type="text">
+            </p> -->
+            <p style="text-align: center ;">
+                <a asp-area="" asp-controller="Employee" asp-action="Index" class="btn btn-dark me-3">Go to List</a>
+                <button type="submit" class="btn btn-dark me-3" onclick="Successmsg()"> Submit</button>
+            </p>
+        </div>        
+    </div>
+    <script>
+        function successmsg(){
+            alert("Successfully submitted");
+        }
+    </script>
+</form>            

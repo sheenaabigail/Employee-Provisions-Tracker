@@ -1,0 +1,159 @@
+﻿@using System.Security.Claims;
+@{
+    //ViewData["hostname"] = "user";
+}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - EmpDeviceTracking</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/table.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/login.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/font.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/EmpDeviceTracking.styles.css" asp-append-version="true" />
+    <style>
+        /* main {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-image: url('~/wwwroot/lib/mainbg.jpg');
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-position: center;
+            background-attachment: fixed;
+        } */
+
+        .dropdown {
+            display: inline-block;
+            color: white;
+        }
+
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            background-color: rgba(255, 255, 255, 0.8);
+            box-shadow: 0 0 0px rgba(0, 0, 0, 0.1);
+            z-index: 1;
+            min-width: 160px;
+        }
+
+        .dropdown:hover{
+            
+        }
+
+        .dropdown:hover .dropdown-content {
+            display: block;
+            
+        }
+
+        .dropdown-content a {
+            color: black;
+            padding: 8px 16px;
+            text-decoration: none;
+            display: block;
+            text-align: left;
+
+        }
+
+        .dropdown-content a:hover {
+                background-color: lightgrey;
+                /* color:black; */
+                outline-style: solid;
+        }
+
+        .register-button {
+            background-color: #4a474a;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            font-weight: bold;
+            margin: 0px;
+            /* border:1px solid grey; */
+        }
+
+        .register-button:hover {
+            background-color: #645394;
+        }
+
+        .welcome-user-text {
+            text-align: right;
+            color: white;
+            margin-top: 15px;
+            margin-left: 120px;
+        }
+
+        .horizontal-form label{
+            float:left;
+            margin-right:30px;
+        }
+    </style>
+</head>
+<body class="gothic-font">
+    <header>
+        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
+            <div class="container-fluid">
+                <a class="navbar-brand" asp-area="" asp-controller="Employee" asp-action="Index">EmpDeviceTracking</a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
+                        aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="nav nav-underline navbar-collapse collapse d-sm-inline-flex justify-content-between">
+                    <ul class="navbar-nav flex-grow-1">
+                        @* <li class="nav-item">
+                            
+                            <div class="dropdown">
+                                <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>                               
+                            </div>
+                        </li>  *@                       
+                        <li class="nav-item">
+                            <div class="dropdown">
+                                <a class="nav-link text-dark" >Employees</a>
+                                <div class="dropdown-content">
+                                    <a asp-area="" asp-controller="Employee" asp-action="Index">All Entries</a>
+                                    <a asp-area="" asp-controller="Employee" asp-action="NewEntry">New Entry</a>
+                                </div>
+                            </div>                           
+                        </li>
+                        <li class="nav-item">
+                            <div class="dropdown">
+                                <a class="nav-link text-dark" asp-area="" asp-controller="User" asp-action="Index">Users</a>
+                                @* <div class="dropdown-content">
+                                    <a asp-area="" asp-controller="User" asp-action="Index">Host Details</a>
+                                    <a asp-area="" asp-controller="Employee" asp-action="NewEntry">New Entry</a> 
+                                </div> *@
+                            </div>
+                        </li>
+                        @* <li class="nav-item">
+                        <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+                        </li> *@
+                    </ul>
+                    <p type="text" id="username" name="username"  style="margin:5px 15px 5px 0px; background-color:lightgray; border-radius:5px; padding:5px;"> Hi, @ViewData["username"]!</p>
+                    <a asp-area="" asp-controller="User" asp-action="LogOut" class="btn btn-outline-danger me-3">Logout</a>
+                
+                    @* <a asp-area="" asp-controller="User" asp-action="Login" class="btn btn-primary me-3">Login</a>
+                    <a asp-area="" asp-controller="User" asp-action="Register" class="btn btn-primary">Register</a> *@
+                </div>
+            </div>
+        </nav>
+    </header>
+    <div class="container">
+        <main role="main" class="pb-3">
+            @RenderBody()
+        </main>
+    </div>
+
+    <footer class="border-top footer text-muted">
+        <div class="container">
+            &copy; 2024 - EmpDeviceTracking - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+        </div>
+    </footer>
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    <script src="~/js/registration.js" asp-append-version="true"></script>
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>

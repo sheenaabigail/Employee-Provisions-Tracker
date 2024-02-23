@@ -1,0 +1,71 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+    var EmployeeData = ViewBag.employees;
+}
+<link rel="stylesheet" href="~/css/table.css"/>
+<div style="float:right;" class="gothic-font">
+    <a asp-area="" asp-controller="Employee" asp-action="NewEntry" class="btn btn-dark me-3 mb-3">New Entry</a>
+</div>
+<h2>Employee Provision Details</h2>
+<table class="table table-bordered table-hover table-responsive gothic-font">
+    <thead>
+        <tr>
+            <th>Host Name</th>
+            <th>Employee ID</th>
+            <th>Employee Name</th>
+            <th>Site</th>
+            <th>Department</th>
+            <th>Laptop</th>
+            <th>Charger</th>
+            <th>Mouse</th>
+            <th>Laptop Bag</th>
+            <th>Mouse Pad</th>
+            <th>Remarks</th>
+            <th>Edit</th>
+            <th>Delete</th>
+        </tr>
+    </thead>
+    <tbody>
+        @if (EmployeeData != null)
+        {
+            @for (var i = 0; i < EmployeeData.Count; i++)
+            {                          
+                <tr>
+                    <td>@EmployeeData[i].HostName</td>
+                    <td>@EmployeeData[i].EmpID</td>
+                    <td>@EmployeeData[i].EmpName</td>
+                    <td>@EmployeeData[i].SiteName</td>
+                    <td>@EmployeeData[i].DeptName</td>
+                    <td>@(EmployeeData[i].Lap ? "Yes" : "No")</td>
+                    <td>@(EmployeeData[i].Charger ? "Yes" : "No")</td>
+                    <td>@(EmployeeData[i].Mouse ? "Yes" : "No")</td>
+                    <td>@(EmployeeData[i].LapBag ? "Yes" : "No")</td>
+                    <td>@(EmployeeData[i].MousePad ? "Yes" : "No")</td>
+                    <td>@EmployeeData[i].Remarks</td>
+                    <td>
+                        <form asp-controller="Employee" asp-action="EditEntry" method="post">
+                            <input type="hidden" name="empid" value="@EmployeeData[i].EmpID"/>
+                            @* <a asp-area="" asp-controller="User" asp-action="Register" class="btn btn-secondary">Delete</a> *@
+                            <button type="submit" class="btn btn-primary">Edit</button>
+                        </form>
+                    </td>                    
+                    <td>
+                        <form asp-controller="Employee" asp-action="DeleteEntry" method="post">
+                            <input type="hidden" name="empid" value="@EmployeeData[i].EmpID" />
+                            <button type="submit" class="btn btn-danger">Delete</button>
+                        </form>
+                    </td>
+                </tr>
+            }
+        }
+        else
+        {
+            <tr>
+                <td colspan="9">No employee data available.</td>
+            </tr>
+        }
+    </tbody>
+
+</table>

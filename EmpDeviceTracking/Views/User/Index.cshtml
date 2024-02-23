@@ -1,0 +1,57 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+    var userdata = ViewBag.users;
+}
+
+<link rel="stylesheet" href="~/css/table.css" />
+
+<h2>Users</h2>
+<table class="table table-striped table-bordered table-hover table-responsive gothic-font">
+    <thead>
+        <tr>           
+            <th colspan="2">User</th>
+            <th>Username</th>
+            <th>Phone Number</th>
+            <th>Gender</th>
+            <th>Delete</th
+        </tr>
+    </thead>
+    <tbody>
+        @if (userdata != null)
+        {
+            @for (var i = 0; i < userdata.Count; i++)
+            {
+                <tr>
+                    <td>@userdata[i].FirstName</td>
+                    <td>@userdata[i].LastName</td>
+                    <td>@userdata[i].Email</td>
+                    <td>@userdata[i].PhoneNo</td>
+                    <td>@(userdata[i].Gender ? "Male" : "Female")</td>
+                    
+                    @* <td>
+                        <form asp-controller="Employee" asp-action="EditEntry" method="post">
+                            <input type="hidden" name="empid" value="@EmployeeData[i].EmpID" />
+                            @* <a asp-area="" asp-controller="User" asp-action="Register" class="btn btn-secondary">Delete</a> 
+                            <button type="submit" class="btn-secondary">Edit</button>
+                        </form>
+                    </td>*@
+                    <td>
+                        <form asp-controller="User" asp-action="DeleteUser" method="post">
+                            <input type="hidden" name="username" value="@userdata[i].Email" />
+                            <button type="submit" class=" btn btn-danger">Delete</button>
+                        </form>
+                    </td> 
+                </tr>
+            }
+        }
+        else
+        {
+            <tr>
+                <td colspan="9">No employee data available.</td>
+            </tr>
+        }
+    </tbody>
+
+</table>

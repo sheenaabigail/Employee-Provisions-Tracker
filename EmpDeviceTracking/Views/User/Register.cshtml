@@ -1,0 +1,155 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+    Layout = null;
+}
+
+<link href="~/lib/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet" />
+<link href="~/lib/bootstrap/dist/css/bootstrap.rtl.min.css" rel="stylesheet" />
+<link href="~/lib/bootstrap/dist/css/bootstrap.rtl.css" rel="stylesheet" />
+<link href="~/lib/bootstrap/dist/css/bootstrap.css" rel="stylesheet" />
+<link rel="stylesheet" href="~/EmpDeviceTracking.styles.css" asp-append-version="true" />
+    <style>
+        
+
+        /* .form {
+            margin: auto;
+            margin-top: 30px;
+            background-color: #F0FFFF;
+            padding: 15px;
+            border-radius: 10px;
+            min-width: 500px;
+            width: fit-content;
+        } */
+
+        
+
+    .register-container {
+        background-color: rgba(255, 255, 255, 0.8); /* Background color with some transparency */
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        padding: 20px;
+        border-radius: 8px;
+        width: 500px;
+        margin: auto;
+        margin-top: 50px;
+    }
+
+        form h2 {
+            text-align: center;
+            color: #333;
+            margin:10px;
+        }
+
+    form {
+        display: flex;
+        flex-direction: column;
+        
+    }
+
+        form  label {
+            margin-bottom: 8px;
+        }
+
+        form  input {
+            padding: 10px;
+            margin-bottom: 16px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+
+        form button {
+            background-color: #333;
+            color: white;
+            padding: 10px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+            .form button:hover {
+                background-color: #555;
+            }
+
+    </style>
+<link rel="stylesheet" href="~/css/site.css">
+
+<body class="gothic-font">
+    <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
+        <div class="container-fluid">
+            <a class="navbar-brand" asp-area="" asp-controller="User" asp-action="Login">EmpDeviceTracking</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
+                    aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+        </div>
+    </nav>
+    <div class="register-container">
+            <form method="post" class="login-form" asp-action="RegisterUser" onsubmit="verifyRegistration()">
+               
+                    <h2>User Registeration</h2>
+                    
+                        <label for="FirstName">First Name:</label>
+                        <input class="form-control" type="text" name="FirstName" id="FirstName" placeholder="Enter your first name">
+            <div class="valid-feedback">Valid.</div>
+            <div class="invalid-feedback">Please fill out this field.</div>
+                    
+                        <label for="LastName">Last Name:</label>
+                        <input class="form-control" type="text" id="LastName" name="LastName" placeholder="Enter your last name">
+                    
+                    
+                        <label for="Email">Email:</label>
+                        <input class="form-control" type="email" id="Email" name="Email" placeholder="Enter your email">
+                   
+                    
+                        <label for="PhoneNumber">Phone Number:</label>
+                        <input class="form-control" type="tel" id="PhoneNo" name="PhoneNo" placeholder="Enter your phone number">
+                   
+                        <label>Gender:</label>
+                        <div>
+                            <div>
+                                <input class="form-check-input" type="radio" name="Gender" id="male-gender" value="true">
+                                <label for="male-gender">Male</label>
+                            </div>
+                            <div>
+                                <input type="radio" class="form-check-input" name="Gender" value="false">
+                                <label for="female-gender">Female</label>
+                            </div>
+                        </div>
+                    
+                        <label for="password">Password:</label>
+                        <input class ="form-control" type="password" id="Password" name="Password" placeholder="Enter your password">
+                    
+                        <label for="rePassword">Repeat Password:</label>
+                        <input class="form-control" type="password" id="RePassword" name="RePassword" placeholder="Repeat your password">
+
+            <button type="submit" class="btn btn-primary m-3" onclick="verifyRegistration()" >Register</button>
+                
+            </form>
+    </div>
+    <script>
+        function verifyRegistration() {
+            const firstName = document.getElementById('FirstName').value;
+            const lastName = document.getElementById('LastName').value;
+            const email = document.getElementById('Email').value;
+            const phoneNumber = document.getElementById('PhoneNumber').value;
+            const gender = document.querySelector('input[name="Gender"]:checked');
+
+            const password = document.getElementById('Password').value;
+            const rePassword = document.getElementById('RePassword').value;
+
+            if (firstName === '' || lastName === '' || email === '' || phoneNumber === '' || !gender || password === '' || rePassword === '') {
+                alert("Fill all fields");
+            } else {
+                if (password === rePassword) {
+                    window.location.href = 'login.html';
+                } else {
+                    alert("Passwords do not match. Try again.");
+                    window.location.href = 'register.html';
+                }
+            }
+        }
+    </script>
+    
+</body>
+

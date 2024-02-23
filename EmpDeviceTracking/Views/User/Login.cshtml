@@ -1,0 +1,65 @@
+﻿ @*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+    Layout = null;
+}
+<html>
+
+<script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+<script src="~/lib/bootstrap/dist/js/bootstrap.bundle.js"></script>
+<script src="~/lib/bootstrap/dist/js/bootstrap.esm.min.js"></script>
+<script src="~/lib/bootstrap/dist/js/bootstrap.esm.js"></script>
+<script src="~/lib/bootstrap/dist/js/bootstrap.min.js"></script>
+<script src="~/lib/bootstrap/dist/js/bootstrap.js"></script>
+
+<head>
+    <style>
+    
+        .login-container {
+            background-color: rgba(255, 255, 255, 0.8); /* Background color with some transparency */
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            border-radius: 8px;
+            width: 400px;
+            margin: auto;
+            margin-top: 100px;
+        }
+
+</style>
+</head>
+<body class="gothic-font">    
+    <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
+        <div class="container-fluid">
+            <a class="navbar-brand" asp-area="" asp-controller="User" asp-action="Login">EmpDeviceTracking</a>                     
+        </div>     
+    </nav>
+
+    <div class="login-container">    
+        <form method="post" class="container p-3" asp-action="LoginUser" onsubmit="validateForm(event)">
+            <h2 class="mb-3">Login</h2>
+            <div class="input-group mb-3">
+
+                <input class="form-control" type="text" id="username" name="username" placeholder="Username" required>
+            </div>
+            <div class="input-group mb-3">
+                <input class="form-control" type="password" id="password" name="password" placeholder="Password" required>
+            </div>
+            <p class="error-message" id="error-message" style="color:red">@ViewBag.ErrorMessage </p>
+            
+            <div class="d-flex justify-content-center">
+                <button type="submit" class="btn btn-primary w-25 me-3">Login</button>
+                <a asp-area="" asp-controller="User" asp-action="Register" class="btn btn-primary w-25">Register</a>
+            </div>
+        </form>
+    </div>
+    
+    <link href="~/lib/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="~/lib/bootstrap/dist/css/bootstrap.rtl.min.css" rel="stylesheet" />
+    <link href="~/lib/bootstrap/dist/css/bootstrap.rtl.css" rel="stylesheet" />
+    <link href="~/lib/bootstrap/dist/css/bootstrap.css" rel="stylesheet" />
+    <link rel="stylesheet" href="~/EmpDeviceTracking.styles.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/site.css">
+<script src="login.js" defer></script> 
+</body>
+</html>
